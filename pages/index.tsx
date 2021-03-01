@@ -17,9 +17,9 @@ import {
   Button,
 } from "@material-ui/core";
 
-//import { NES } from '../app/core/nes';
-//import { ROM } from '../app/core/rom';
-//import { Screen } from '../app/core/screen';
+import { NES } from '../app/emulator/nes';
+import { Screen } from '../app/screen/screen';
+import { Button as NESButton } from '../app/api/controller';
 
 const useStyle = makeStyles({
   root: (props: Theme) => ({
@@ -32,33 +32,67 @@ const useStyle = makeStyles({
 });
 
 export default function Home() {
-//  let nes: NES;
-
+  let nes: NES;
+  let screen: Screen;
   const classes = useStyle(useTheme());
 
   const handleChangeFile = (file: File) => {
     let reader = new FileReader();
     let onLoad = (f: File) => (e: any) => {
-//      nes     = new NES();
-//      nes.setROM(new ROM(e.target.result));
-//      nes.setScreen(new Screen(document.getElementById('screen') as HTMLCanvasElement));
-//      nes.bootup();
-//      start();
+      screen = new Screen(document.getElementById('screen') as HTMLCanvasElement);
+      nes    = new NES(new Uint8Array(e.target.result), {
+        sampleRate: undefined,
+        onSample:   volume => {},
+        onFrame:    frame  => screen.onFrame(frame),
+        sramLoad:   undefined
+      });
+      screen.emulator = nes;
+      document.addEventListener('keydown', keyboardHandle);
+      document.addEventListener('keyup', keyboardHandle);
+      function keyboardHandle(e: KeyboardEvent) {
+        let button: NESButton;
+        switch (e.code) {
+          case 'ArrowUp':
+            button = NESButton.UP;
+            break;
+          case 'ArrowDown':
+            button = NESButton.DOWN;
+            break;
+          case 'ArrowLeft':
+            button = NESButton.LEFT;
+            break;
+          case 'ArrowRight':
+            button = NESButton.RIGHT;
+            break;
+          case 'Enter':
+            button = NESButton.START;
+            break;
+          case 'Space':
+            button = NESButton.SELECT;
+            break;
+          case 'KeyX':
+            button = NESButton.A;
+            break;
+          case 'KeyZ':
+            button = NESButton.B;
+            break;
+        }
+        nes.player1.update(button, e.type === 'keydown');
+        nes.player2.update(button, e.type === 'keydown');
+        e.preventDefault();
+      }
+      start();
     }
     reader.onload = onLoad(file);
     reader.readAsArrayBuffer(file);
   }
 
-//  const start = () => {
-//    requestAnimationFrame(function render(timestamp) {
-//      do {
-//        nes.tick();
-//      } while (!nes.ppu.frameRendered());
-//      console.log(nes.cpu.dump());
-//      nes.runPerFrame();
-//      requestAnimationFrame(render);
-//    });
-//  }
+  const start = () => {
+    requestAnimationFrame(function render(timestamp) {
+      nes.frame();
+      requestAnimationFrame(render);
+    });
+  }
   
   return (
     <div className={classes.root}>
@@ -69,7 +103,8 @@ export default function Home() {
       </Head>
 
       <Box textAlign='center'>
-        <canvas id='screen' width="256" height="240"/>
+        {/*<canvas id="screen" width="768" height="720"></canvas>*/}
+        <canvas id="screen" width="256" height="240"></canvas>
       </Box>
 
       <Box textAlign='center'>
