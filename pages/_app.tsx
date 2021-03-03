@@ -10,6 +10,7 @@ import   CssBaseline     from '@material-ui/core/CssBaseline';
 import { THEME         } from '../app/themes/default';
 import { AppProps      } from 'next/app';
 import { ThemeProvider } from '@material-ui/core/styles';
+import './styles.css'
 
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
