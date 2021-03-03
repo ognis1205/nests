@@ -26,6 +26,19 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+### Key-Mappings
+
+| NES Button | Keyboard |
+-------------|----------- 
+| →      | Arrow-Right |
+| ↓      | Arrow-Down  |
+| ←      | Arrow-Left  |
+| ↑      | Arrow-Up    |
+| SELECT | Space       |
+| START  | Return      |
+| A      | X           |
+| B      | Z           |
+
 ### Roadmap
 
 The following is a checklist of features and their progress:
