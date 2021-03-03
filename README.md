@@ -3,6 +3,8 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ![Screenshot of Donkey Kong](https://imgur.com/Ntt91Jd.gif)
+![Screenshot of Super Mario Brothers](https://imgur.com/rlbFwm0.gif)
+![Screenshot of Legend of Zelda](https://imgur.com/pp0AZE7.gif)
 
 ### Notice
 
