@@ -15,6 +15,11 @@ export const NES = ({}) => {
 
   let nes: NESEmulator;
 
+//  let fps = 60;
+
+//  let then = new Date().getTime();
+//  let then = performance.now();
+
   const handleChangeFile = (file: File) => {
     let reader = new FileReader();
     let onLoad = (f: File) => (e: any) => {
@@ -79,7 +84,11 @@ export const NES = ({}) => {
 
   const start = () => {
     requestAnimationFrame(function render(timestamp) {
-      console.log(screen);
+//      let now = new Date().getTime();
+//      let now = performance.now();
+//      let fps = 1000 / (now - then);
+//      then = now;
+//      console.log(fps);
       nes.frame();
       requestAnimationFrame(render);
     });
