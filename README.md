@@ -12,7 +12,8 @@ This project is STILL EXPERIMENTAL and WIP.
 
 ### Summary
 
-TypeScript/React.js NES emulator implementation for My Own Learning Porpose. The implementation is NOT fully faithfull to the original NES hardware.
+TypeScript/React.js NES emulator implementation for My Own Learning Porpose. The implementation is NOT fully faithfull to the original NES hardware
+and some codes are still messy.
 
 ### Getting Started
 
@@ -77,3 +78,4 @@ The following is a checklist of features and their progress:
   - [ ] Refactor Source Codes
   - [ ] Error Handling
   - [ ] Documentation
+  - [ ] Make Things Responsive
