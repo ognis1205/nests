@@ -34,7 +34,7 @@ export const Screen = React.forwardRef<HTMLCanvasElement, Props>((props, ref) =>
 
   return (
     <div className="screen-box">
-      <div className="screen-display">
+      <div id="display">
         <canvas ref={canvas} width={props.width} height={props.height}/>
       </div>
     </div>

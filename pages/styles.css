@@ -5,7 +5,7 @@
  * Trademarks are owned by their respect owners.
  */
 
-.nes {
+.nes-box {
     background-color: rgb(3,142,159);
     border: 3px solid rgb(14,100,120);
     border-top-left-radius: 10px;
@@ -33,7 +33,7 @@
     top: 17px;
 }
 
-.screen-display {
+#display {
     background-color: lightgray;
     border: 5px solid black;
     border-radius: 3px;
@@ -47,7 +47,7 @@
     top: 15px;
 }
 
-.logo {
+#logo {
   border: 2px solid rgb(0,107,128);
   border-radius: 10px/50%;
   box-sizing: border-box;
@@ -79,7 +79,7 @@
   position: absolute;
 }
 
-#up-box {
+#u {
   background-color: rgb(127,117,116);
   border-radius: 4px 4px 0 0;
   box-shadow: 2px 2px 4px black, inset 2px 2px 4px darkgray, -1px -1px 2px black;
@@ -89,15 +89,15 @@
   position: absolute;
 }
 
-#up-box:active {
+#u:active {
   box-shadow: 2px 2px 4px darkgray, inset 2px 2px 4px black, -1px -1px 2px black;
 }
 
-#up-box.active {
+#u.active {
   box-shadow: 2px 2px 4px darkgray, inset 2px 2px 4px black, -1px -1px 2px black;
 }
 
-#right-box {
+#r {
   background-color: rgb(127,117,116);
   border-radius: 0 4px 4px 0;
   box-shadow: 2px 2px 4px black, inset 0px 4px 4px -2px darkgray, -1px -1px 2px black;
@@ -108,15 +108,15 @@
   position: absolute;
 }
 
-#right-box:active {
+#r:active {
   box-shadow: 2px 2px 4px darkgray, inset 2px 2px 4px black, -1px -1px 2px black;
 }
 
-#right-box.active {
+#r.active {
   box-shadow: 2px 2px 4px darkgray, inset 2px 2px 4px black, -1px -1px 2px black;
 }
 
-#down-box {
+#d {
   background-color: rgb(127,117,116);
   border-radius: 0 0 4px 4px;
   box-shadow: 2px 2px 4px black, inset 4px 0px 4px -2px darkgray, -1px -1px 2px black;
@@ -127,15 +127,15 @@
   position: absolute;
 }
 
-#down-box:active {
+#d:active {
   box-shadow: 2px 2px 4px darkgray, inset 2px 2px 4px black, -1px -1px 2px black;
 }
 
-#down-box.active {
+#d.active {
   box-shadow: 2px 2px 4px darkgray, inset 2px 2px 4px black, -1px -1px 2px black;
 }
 
-#left-box {
+#l {
   background-color: rgb(127,117,116);
   border-radius: 4px 0 0 4px;
   box-shadow: 0px 4px 4px -2px black, inset 2px 2px 4px darkgray, -1px -1px 2px black;
@@ -145,15 +145,15 @@
   position: absolute;
 }
 
-#left-box:active {
+#l:active {
   box-shadow: 2px 2px 4px darkgray, inset 2px 2px 4px black, -1px -1px 2px black;
 }
 
-#left-box.active {
+#l.active {
   box-shadow: 2px 2px 4px darkgray, inset 2px 2px 4px black, -1px -1px 2px black;
 }
 
-#center-box {
+#c {
   background-color: rgb(127,117,116);
   height: 33%;
   width: 33%;
@@ -186,15 +186,19 @@
   position: absolute;
 }
 
-.right {
+.u {
+  transform: rotate(0deg);
+}
+
+.r {
   transform: rotate(90deg);
 }
 
-.down {
+.d {
   transform: rotate(180deg);
 }
 
-.left {
+.l {
   transform: rotate(270deg);
 }
 
@@ -249,7 +253,7 @@
   right: 62px;
 }
 
-.button-text-height {
+.button-height {
   transform: scaleY(2);
   position: absolute;
   top: 11px;

@@ -4,7 +4,7 @@
  * Written by and Copyright (C) 2021 Shingo OKAWA shingo.okawa.g.h.c@gmail.com
  * Trademarks are owned by their respect owners.
  */
-import   React, { useRef    }    from 'react';
+import   React, { useRef    } from 'react';
 import { NES as NESEmulator } from '../emulator/nes';
 import { Button             } from '../api/controller';
 import { Screen             } from './screen';
@@ -13,12 +13,9 @@ import { Logo               } from './logo';
 export const NES = ({}) => {
   let screen = useRef();
 
+//  let controller = useRef();
+
   let nes: NESEmulator;
-
-//  let fps = 60;
-
-//  let then = new Date().getTime();
-//  let then = performance.now();
 
   const handleChangeFile = (file: File) => {
     let reader = new FileReader();
@@ -37,19 +34,19 @@ export const NES = ({}) => {
         switch (e.code) {
           case 'ArrowUp':
             btn = Button.UP;
-            obj = document.getElementById ('up-box');
+            obj = document.getElementById ('u');
             break;
           case 'ArrowDown':
             btn = Button.DOWN;
-            obj = document.getElementById ('down-box');
+            obj = document.getElementById ('d');
             break;
           case 'ArrowLeft':
             btn = Button.LEFT;
-            obj = document.getElementById ('left-box');
+            obj = document.getElementById ('l');
             break;
           case 'ArrowRight':
             btn = Button.RIGHT;
-            obj = document.getElementById ('right-box');
+            obj = document.getElementById ('r');
             break;
           case 'Enter':
             btn = Button.START;
@@ -84,30 +81,25 @@ export const NES = ({}) => {
 
   const start = () => {
     requestAnimationFrame(function render(timestamp) {
-//      let now = new Date().getTime();
-//      let now = performance.now();
-//      let fps = 1000 / (now - then);
-//      then = now;
-//      console.log(fps);
       nes.frame();
       requestAnimationFrame(render);
     });
   }
 
   return (
-      <div className="nes">
-        <Screen ref={screen} width='256' height='240'/>
+      <div className="nes-box">
+        <Screen ref={screen} width={256} height={240}/>
         <Logo/>
         <div className="button-box">
           <div className="arrow-group">
-            <div id="up-box"    ><span className="arrow up"   ></span></div>
-            <div id="right-box" ><span className="arrow right"></span></div>
-            <div id="down-box"  ><span className="arrow down" ></span></div>
-            <div id="center-box"><span className="dent"><span className="dent-highlight"></span></span></div>
-            <div id="left-box"  ><span className="arrow left" ></span></div>
+            <div id="u"><span className="arrow u"></span></div>
+            <div id="r"><span className="arrow r"></span></div>
+            <div id="d"><span className="arrow d"></span></div>
+            <div id="c"><span className="dent   "><span className="dent-highlight"></span></span></div>
+            <div id="l"><span className="arrow l" ></span></div>
           </div>
-          <div id="a" className="ab-button"><span className="button-text-height">A</span></div>
-          <div id="b" className="ab-button"><span className="button-text-height">B</span></div>
+          <div id="a" className="ab-button"><span className="button-height">A</span></div>
+          <div id="b" className="ab-button"><span className="button-height">B</span></div>
         </div>
         <div className="pill-box">
           <div id="button-select" className="pill-button">
