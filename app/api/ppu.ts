@@ -64,9 +64,9 @@ export interface PPU {
 
   tick(): void;
 
-  cpuRead(address: uint16): uint8;
+  cpuRead(addr: uint16): uint8;
 
-  cpuWrite(address: uint16, data: uint8): void;
+  cpuWrite(addr: uint16, data: uint8): void;
 
   dma(data: Uint8Array): void;
 }
