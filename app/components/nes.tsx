@@ -9,6 +9,7 @@ import { NES as NESEmulator } from '../emulator/nes';
 import { Button             } from '../api/controller';
 import { Screen             } from './screen';
 import { Logo               } from './logo';
+import   styles               from './nes.module.css'
 
 export const NES = ({}) => {
   let screen = useRef();

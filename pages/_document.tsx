@@ -7,23 +7,25 @@
 import   React                                      from 'react';
 import   Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets                        } from '@material-ui/core/styles';
-import { THEME                                    } from '../app/themes/default';
+import { theme                                    } from '../styles/theme/default';
 
-export default class MyDocument extends Document {
+export default class EmulatorDocument extends Document {
   render() {
     return (
       <Html lang="en">
         <Head>
           {/* PWA primary color */}
-          <meta name="theme-color" content={ THEME.palette.primary.main } />
+          <title>NESts</title>
+          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+          <meta name="theme-color" content={ theme.palette.primary.main } />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
         </Head>
         <body>
-          <Main />
-          <NextScript />
+          <Main/>
+          <NextScript/>
         </body>
       </Html>
     );
@@ -32,7 +34,7 @@ export default class MyDocument extends Document {
 
 // `getInitialProps` belongs to `_document` (instead of `_app`),
 // it's compatible with server-side generation (SSG).
-MyDocument.getInitialProps = async (ctx) => {
+EmulatorDocument.getInitialProps = async (ctx) => {
   // Resolution order
   //
   // On the server:
@@ -57,6 +59,7 @@ MyDocument.getInitialProps = async (ctx) => {
 
   // Render app and page and get the context of the page with collected side effects.
   const sheets = new ServerStyleSheets();
+
   const originalRenderPage = ctx.renderPage;
 
   ctx.renderPage = () =>
