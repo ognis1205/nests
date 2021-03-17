@@ -5,8 +5,8 @@
  * Trademarks are owned by their respect owners.
  */
 import   React, { useRef    } from 'react';
-import { NES as NESEmulator } from '../emulator/nes';
-import { Button             } from '../api/controller';
+import { NES as NESEmulator } from '../../app/emulator/nes';
+import { Button             } from '../../app/api/controller';
 import { Screen             } from './screen';
 import { Logo               } from './logo';
 import   styles               from './nes.module.css'

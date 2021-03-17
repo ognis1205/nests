@@ -9,10 +9,6 @@ import React from 'react';
 type Props = {
 };
 
-export const Controller: React.FC<Props> = (props) => {
-  const handler = (e: KeyboardEvent) => {
-  };
-
-  return (
-  );
+export const Logo: React.FC<Props> = (props) => {
+  return <div id='logo'>NESts</div>;
 }
