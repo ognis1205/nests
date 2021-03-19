@@ -4,19 +4,6 @@
  * Written by and Copyright (C) 2021 Shingo OKAWA shingo.okawa.g.h.c@gmail.com
  * Trademarks are owned by their respect owners.
  */
-.emulator {
-    background-color: rgb(3,142,159);
-    border: 3px solid rgb(14,100,120);
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 50% 30px;
-    border-bottom-right-radius: 50% 30px;
-    height: 565px;
-    width: 325px;
-    top: 10px;
-    left: 10px;
-}
-
 .pill-buttons {
     height: 85px;
     width: 282px;

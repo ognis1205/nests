@@ -1,0 +1,201 @@
+/*
+ * nes-ts:
+ * Emulator for the Nintendo Entertainment System (R) Archetecture.
+ * Written by and Copyright (C) 2021 Shingo OKAWA shingo.okawa.g.h.c@gmail.com
+ * Trademarks are owned by their respect owners.
+ */
+.action-buttons {
+    height: 85px;
+    width: 282px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 45px;
+}
+
+.dpad {
+    height: 85px;
+    width: 85px;
+    position: absolute;
+}
+
+.up-button {
+    background-color: rgb(127,117,116);
+    border-radius: 4px 4px 0 0;
+    box-shadow: 2px 2px 4px black, inset 2px 2px 4px darkgray, -1px -1px 2px black;
+    height: 33%;
+    width: 33%;
+    left: 33%;
+    position: absolute;
+}
+
+.up-button:active {
+    box-shadow: 2px 2px 4px darkgray, inset 2px 2px 4px black, -1px -1px 2px black;
+}
+
+.up-button.active {
+    box-shadow: 2px 2px 4px darkgray, inset 2px 2px 4px black, -1px -1px 2px black;
+}
+
+.right-button {
+    background-color: rgb(127,117,116);
+    border-radius: 0 4px 4px 0;
+    box-shadow: 2px 2px 4px black, inset 0px 4px 4px -2px darkgray, -1px -1px 2px black;
+    height: 33%;
+    width: 33%;
+    right: 0%;
+    top: 33%;
+    position: absolute;
+}
+
+.right-button:active {
+    box-shadow: 2px 2px 4px darkgray, inset 2px 2px 4px black, -1px -1px 2px black;
+}
+
+.right-button.active {
+    box-shadow: 2px 2px 4px darkgray, inset 2px 2px 4px black, -1px -1px 2px black;
+}
+
+.down-button {
+    background-color: rgb(127,117,116);
+    border-radius: 0 0 4px 4px;
+    box-shadow: 2px 2px 4px black, inset 4px 0px 4px -2px darkgray, -1px -1px 2px black;
+    height: 34%;
+    width: 33%;
+    bottom: 0%;
+    left: 33%;
+    position: absolute;
+}
+
+.down-button:active {
+    box-shadow: 2px 2px 4px darkgray, inset 2px 2px 4px black, -1px -1px 2px black;
+}
+
+.down-button.active {
+    box-shadow: 2px 2px 4px darkgray, inset 2px 2px 4px black, -1px -1px 2px black;
+}
+
+.left-button {
+    background-color: rgb(127,117,116);
+    border-radius: 4px 0 0 4px;
+    box-shadow: 0px 4px 4px -2px black, inset 2px 2px 4px darkgray, -1px -1px 2px black;
+    height: 33%;
+    width: 33%;
+    top: 33%;
+    position: absolute;
+}
+
+.left-button:active {
+    box-shadow: 2px 2px 4px darkgray, inset 2px 2px 4px black, -1px -1px 2px black;
+}
+
+.left-button.active {
+    box-shadow: 2px 2px 4px darkgray, inset 2px 2px 4px black, -1px -1px 2px black;
+}
+
+.dent-button {
+    background-color: rgb(127,117,116);
+    height: 33%;
+    width: 33%;
+    left: 33%;
+    top: 33%;
+    position: absolute;
+}
+
+.arrow {
+    height: 0;
+    width: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 18px solid rgb(75,70,66);
+    left: 6px;
+    top: 5px;
+    position: absolute;
+    z-index: 1;
+}
+
+.arrow::after {
+    content: "";
+    height: 0;
+    width: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 15px solid rgb(89,79,77);
+    left: -7px;
+    top: 3px;
+    position: absolute;
+}
+
+.up-arrow {
+    transform: rotate(0deg);
+}
+
+.right-arrow {
+    transform: rotate(90deg);
+}
+
+.down-arrow {
+    transform: rotate(180deg);
+}
+
+.left-arrow {
+    transform: rotate(270deg);
+}
+
+.dent-circle {
+    background-color: rgb(75,70,66);
+    border-radius: 50%;
+    left: 6px;
+    top: 6px;
+    position: absolute;
+    height: 17px;
+    width: 17px;
+}
+
+.dent-highlight {
+    background-color: rgb(155,145,144);
+    border-radius: 50%;
+    box-shadow: 0 0 6px 3px rgb(155,145,144);
+    height: 5px;
+    width: 5px;
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+}
+
+.ab-button {
+    background-color: rgb(78,70,68);
+    border-radius: 50%;
+    box-shadow: 2px 2px 2px black, inset 2px 2px 2px darkgray, -1px -1px 2px black;
+    font-family: "Gill Sans", sans-serif;
+    color: rgb(55,40,47);
+    text-shadow: 1px 1px 1px rgb(89,79,77);
+    height: 40px;
+    width: 40px;
+    position: absolute;
+}
+
+.ab-button:active {
+    box-shadow: 2px 2px 2px darkgray, inset 2px 2px 2px black, -1px -1px 2px black;
+}
+
+.ab-button.active {
+    box-shadow: 2px 2px 2px darkgray, inset 2px 2px 2px black, -1px -1px 2px black;
+}
+
+.a-button {
+    right: 0px;
+    top: 10px;
+}
+
+.b-button {
+    bottom: 13px;
+    right: 62px;
+}
+
+.button-height {
+    transform: scaleY(2);
+    position: absolute;
+    top: 11px;
+    left: 14px;
+}

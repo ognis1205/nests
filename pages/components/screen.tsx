@@ -6,14 +6,27 @@
  */
 import React  from 'react';
 import styles from '../../styles/Screen.module.css'
+import { useRef } from 'react';
 
 type CanvasProps = React.HTMLProps<HTMLCanvasElement>
 
-export const Screen = React.forwardRef<HTMLCanvasElement, CanvasProps>((props, ref) => {
+type ScreenDisplay = {
+  canvas: HTMLCanvasElement;
+};
+
+export const Screen = React.forwardRef<ScreenDisplay, CanvasProps>((props, ref) => {
+  const canvas = useRef<HTMLCanvasElement>();
+
+  React.useImperativeHandle(ref, () => ({
+    get canvas(): HTMLCanvasElement {
+      return canvas.current;
+    },
+  }));
+
   return (
     <div className={styles['screen']}>
       <div className={styles['display']}>
-        <canvas ref={ref} width={props['width']} height={props['height']}/>
+        <canvas ref={canvas} width={props['width']} height={props['height']}/>
       </div>
     </div>
   );

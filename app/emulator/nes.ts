@@ -25,6 +25,8 @@ import { INES               } from '../rom/ines'
 import { colour             } from './palettes';
 
 export class NES implements Emulator {
+  private rom: ROM;
+
   public readonly player1: Controller;
 
   public readonly player2: Controller;
@@ -36,8 +38,6 @@ export class NES implements Emulator {
   private readonly ppu: PPU;
 
   private readonly dma: DMA;
-
-  private readonly rom: ROM;
 
   private readonly ppuRam: RAM;
 
