@@ -4,24 +4,20 @@
  * Written by and Copyright (C) 2021 Shingo OKAWA shingo.okawa.g.h.c@gmail.com
  * Trademarks are owned by their respect owners.
  */
-import   React                                      from 'react';
-import   Document, { Html, Head, Main, NextScript } from 'next/document';
-import { ServerStyleSheets                        } from '@material-ui/core/styles';
-import { theme                                    } from '../styles/theme/default';
+import React    from 'react';
+import Document from 'next/document';
+import { Html, Head, Main, NextScript } from 'next/document';
+import { ServerStyleSheets            } from '@material-ui/core/styles';
+import { theme                        } from '../styles/theme/default';
 
 export default class EmulatorDocument extends Document {
   render() {
     return (
       <Html lang="en">
         <Head>
-          {/* PWA primary color */}
-          <title>NESts</title>
           <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
           <meta name="theme-color" content={ theme.palette.primary.main } />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-          />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
         </Head>
         <body>
           <Main/>

@@ -1,0 +1,22 @@
+/*
+ * nes-ts:
+ * Emulator for the Nintendo Entertainment System (R) Archetecture.
+ * Written by and Copyright (C) 2021 Shingo OKAWA shingo.okawa.g.h.c@gmail.com
+ * Trademarks are owned by their respect owners.
+ */
+.logo {
+    border: 2px solid rgb(0,107,128);
+    border-radius: 10px/50%;
+    box-sizing: border-box;
+    color: rgb(0,107,128);
+    font-family: "Gill Sans", sans-serif;
+    font-weight: bold;
+    height: 25px;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2px;
+    position: relative;
+    text-align: center;
+    top: 40px;
+}

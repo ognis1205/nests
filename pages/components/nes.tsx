@@ -4,27 +4,49 @@
  * Written by and Copyright (C) 2021 Shingo OKAWA shingo.okawa.g.h.c@gmail.com
  * Trademarks are owned by their respect owners.
  */
-import   React, { useRef    } from 'react';
-import { NES as NESEmulator } from '../../app/emulator/nes';
-import { Button             } from '../../app/api/controller';
-import { Screen             } from './screen';
-import { Logo               } from './logo';
-import   styles               from './nes.module.css'
+import  React  from 'react';
+import  styles from '../../styles/NES.module.css'
+import { useRef          } from 'react';
+import { NES as Emulator } from '../../app/emulator/nes';
+import { Button          } from '../../app/api/controller';
+import { Screen          } from './screen';
+import { Logo            } from './logo';
 
-export const NES = ({}) => {
-  let screen = useRef();
+type Props = {
+  width:  number;
+  height: number;
+};
 
-//  let controller = useRef();
+export const NES: React.FC<Props> = (props: Props) => {
+  type ScreenHandle = React.ElementRef<typeof Screen>;
 
-  let nes: NESEmulator;
+  let screen = useRef<ScreenHandle>();
+
+  let nes: Emulator;
+
+  const onFrame = (frame: Uint32Array) => {
+    let ctx = screen.current.getContext('2d');
+    let img = ctx.createImageData(props.width, props.height);
+    let ptr = 0;
+    for (let y = 0; y < props.height; y++) {
+      for (let x = 0; x < props.width; x++) {
+        const offset = y * props.width + x;
+        img.data[ptr++] = frame[offset] >> 16 & 0xFF;
+        img.data[ptr++] = frame[offset] >>  8 & 0xFF;
+        img.data[ptr++] = frame[offset] >>  0 & 0xFF;
+        img.data[ptr++] = 255;
+      }
+    }
+    ctx.putImageData(img, 0, 0);
+  }
 
   const handleChangeFile = (file: File) => {
     let reader = new FileReader();
     let onLoad = (f: File) => (e: any) => {
-      nes = new NESEmulator(new Uint8Array(e.target.result), {
+      nes = new Emulator(new Uint8Array(e.target.result), {
         sampleRate: undefined,
         onSample:   volume => {},
-        onFrame:    frame  => screen.current.onFrame(frame),
+        onFrame:    frame  => onFrame(frame),
         sramLoad:   undefined
       });
       document.addEventListener('keydown', keyboardHandle);
@@ -88,28 +110,44 @@ export const NES = ({}) => {
   }
 
   return (
-      <div className="nes-box">
-        <Screen ref={screen} width={256} height={240}/>
+      <div className={styles['emulator']}>
+        <Screen ref={screen} width={props['width']} height={props['height']}/>
         <Logo/>
-        <div className="button-box">
-          <div className="arrow-group">
-            <div id="u"><span className="arrow u"></span></div>
-            <div id="r"><span className="arrow r"></span></div>
-            <div id="d"><span className="arrow d"></span></div>
-            <div id="c"><span className="dent   "><span className="dent-highlight"></span></span></div>
-            <div id="l"><span className="arrow l" ></span></div>
+        <div className={styles['action-buttons']}>
+          <div className={styles['dpad']}>
+            <div className={styles['up-button']}>
+              <span className={`${styles['arrow']} ${styles['up-arrow']}`}/>
+            </div>
+            <div className={styles['right-button']}>
+              <span className={`${styles['arrow']} ${styles['right-arrow']}`}/>
+            </div>
+            <div className={styles['down-button']}>
+              <span className={`${styles['arrow']} ${styles['down-arrow']}`}/>
+            </div>
+            <div className={styles['dent-button']}>
+              <span className={styles['dent-circle']}>
+                <span className={`${styles['dent-highlight']}`}/>
+              </span>
+            </div>
+            <div className={styles['left-button']}>
+              <span className={`${styles['arrow']} ${styles['left-arrow']}`}/>
+            </div>
           </div>
-          <div id="a" className="ab-button"><span className="button-height">A</span></div>
-          <div id="b" className="ab-button"><span className="button-height">B</span></div>
+          <div className={`${styles['ab-button']} ${styles['a-button']}`}>
+            <span className={styles['button-height']}>A</span>
+          </div>
+          <div className={`${styles['ab-button']} ${styles['b-button']}`}>
+            <span className={styles['button-height']}>B</span>
+          </div>
         </div>
-        <div className="pill-box">
-          <div id="button-select" className="pill-button">
+        <div className={styles['pill-buttons']}>
+          <div className={styles['pill-button']}>
             <label className="select">SELECT</label>
           </div>
-          <div id="button-start" className="pill-button">
+          <div className={styles['pill-button']}>
             <label className="start">START</label>
           </div>
-          <div id="button-rom" className="cart-button">
+          <div className={styles['cart-button']}>
             <input id="ines" type="file" accept=".nes" onChange={(e) => { handleChangeFile(e.target.files[0]); }} hidden/>
             <label className="rom" htmlFor="ines">ROM</label>
           </div>

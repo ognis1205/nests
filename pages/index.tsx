@@ -10,7 +10,7 @@ import { NES    } from './components/nes';
 export default function Home() {
   return (
     <div className={styles.root}>
-      <NES/>
+      <NES width={256} height={240}/>
     </div>
   );
 }

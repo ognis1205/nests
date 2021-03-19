@@ -9,7 +9,6 @@ import   CssBaseline     from '@material-ui/core/CssBaseline';
 import { AppProps      } from 'next/app';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme         } from '../styles/theme/default';
-import './styles.css'
 
 export default function Emulator(props: AppProps) {
   const { Component, pageProps } = props;

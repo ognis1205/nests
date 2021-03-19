@@ -4,38 +4,16 @@
  * Written by and Copyright (C) 2021 Shingo OKAWA shingo.okawa.g.h.c@gmail.com
  * Trademarks are owned by their respect owners.
  */
-import React, { useRef, useImperativeHandle } from 'react';
+import React  from 'react';
+import styles from '../../styles/Screen.module.css'
 
-type Props = {
-  width:  number;
-  height: number;
-};
+type CanvasProps = React.HTMLProps<HTMLCanvasElement>
 
-export const Screen = React.forwardRef<HTMLCanvasElement, Props>((props, ref) => {
-  let canvas = useRef<HTMLCanvasElement>();
-
-  useImperativeHandle(ref, () => ({
-    onFrame(frame: Uint32Array): void {
-      let ctx = canvas.current.getContext('2d');
-      let img = ctx.createImageData(props.width, props.height);
-      let ptr = 0;
-      for (let y = 0; y < props.height; y++) {
-        for (let x = 0; x < props.width; x++) {
-          const offset = y * props.width + x;
-          img.data[ptr++] = frame[offset] >> 16 & 0xFF;
-          img.data[ptr++] = frame[offset] >>  8 & 0xFF;
-          img.data[ptr++] = frame[offset] >>  0 & 0xFF;
-          img.data[ptr++] = 255;
-        }
-      }
-      ctx.putImageData(img, 0, 0);
-    }
-  }));
-
+export const Screen = React.forwardRef<HTMLCanvasElement, CanvasProps>((props, ref) => {
   return (
-    <div className="screen-box">
-      <div id="display">
-        <canvas ref={canvas} width={props.width} height={props.height}/>
+    <div className={styles['screen']}>
+      <div className={styles['display']}>
+        <canvas ref={ref} width={props['width']} height={props['height']}/>
       </div>
     </div>
   );
