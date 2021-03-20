@@ -4,6 +4,7 @@
  * Written by and Copyright (C) 2021 Shingo OKAWA shingo.okawa.g.h.c@gmail.com
  * Trademarks are owned by their respect owners.
  */
+import { APU                } from '../api/apu';
 import { Bus                } from '../api/bus';
 import { Controller         } from '../api/controller';
 import { CPU                } from '../api/cpu';
@@ -13,6 +14,7 @@ import { Interrupt          } from '../api/interrupt';
 import { PPU                } from '../api/ppu';
 import { RAM                } from '../api/ram';
 import { ROM                } from '../api/rom';
+import { RP2C02             } from '../apu/rp2c02';
 import { PPUBus             } from '../bus/ppubus';
 import { CPUBus             } from '../bus/cpubus';
 import { StandardController } from '../controller/standard';
@@ -37,6 +39,8 @@ export class NES implements Emulator {
 
   private readonly ppu: PPU;
 
+  private readonly apu: APU;
+
   private readonly dma: DMA;
 
   private readonly ppuRam: RAM;
@@ -53,7 +57,6 @@ export class NES implements Emulator {
 
   private readonly interrupt: Interrupt;
 
-
   constructor(ines: Uint8Array, options?: Options) {
     options = this.parse(options);
     this.sram = new Uint8Array(8192);
@@ -62,6 +65,7 @@ export class NES implements Emulator {
     const player2   = new StandardController();
     const cpu       = new MOS6502();
     const ppu       = new RP2A03(pixels => options.onFrame(this.palette(pixels)));
+    const apu       = new RP2C02(options.sampleRate, options.onSample);
     const dma       = new DMAC();
     const rom       = new INES(ines, this.sram);
     const ppuRam    = new DRAM(1024 * 2, 0x2000);
@@ -75,6 +79,8 @@ export class NES implements Emulator {
     ppu.interrupt = interrupt;
     ppu.bus = ppuBus;
     ppu.mapper = rom.mapper;
+    apu.cpuBus = cpuBus;
+    apu.interrupt = interrupt;
     dma.cpu = cpu;
     dma.ppu = ppu;
     interrupt.cpu = cpu;
@@ -85,12 +91,14 @@ export class NES implements Emulator {
     cpuBus.rom = rom;
     cpuBus.ram = cpuRam;
     cpuBus.ppu = ppu;
+    cpuBus.apu = apu;
     cpuBus.dma = dma;
     cpuBus.player1 = player1;
     cpuBus.player2 = player2;
     rom.mapper.interrupt = interrupt;
     this.cpu = cpu;
     this.ppu = ppu;
+    this.apu = apu;
     this.rom = rom;
     this.ppuRam = ppuRam;
     this.cpuRam = cpuRam;
@@ -106,6 +114,7 @@ export class NES implements Emulator {
 
   public tick(): void {
     this.cpu.tick();
+    this.apu.tick();
     this.ppu.tick();
     this.ppu.tick();
     this.ppu.tick();

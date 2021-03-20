@@ -7,8 +7,6 @@
 import React  from 'react';
 import styles from '../../styles/Logo.module.css'
 
-type Props = {};
-
-export const Logo: React.FC<Props> = (props) => {
+export const Logo: React.FC<Object> = (props) => {
   return <div className={styles['logo']}>WebNES</div>;
 }

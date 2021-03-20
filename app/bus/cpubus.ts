@@ -4,6 +4,7 @@
  * Written by and Copyright (C) 2021 Shingo OKAWA shingo.okawa.g.h.c@gmail.com
  * Trademarks are owned by their respect owners.
  */
+import { APU           } from '../api/apu';
 import { Bus           } from '../api/bus';
 import { Controller    } from '../api/controller';
 import { DMA           } from '../api/dma';
@@ -18,6 +19,8 @@ export class CPUBus implements Bus {
   public ram: RAM;
 
   public ppu: PPU;
+
+  public apu: APU;
 
   public dma: DMA;
 
@@ -35,7 +38,7 @@ export class CPUBus implements Bus {
     if (addr  <  0x4000) return this.ppu.cpuWrite(addr & 0x2007, data);
     if (addr === 0x4014) return this.dma.copy(data << 8);
     if (addr === 0x4016) return writeControllers(data);
-    if (addr  <  0x4018) return;//this.apu.write(addr, data);
+    if (addr  <  0x4018) return this.apu.cpuWrite(addr, data);
     if (addr  <  0x4020) return;
     return this.rom.mapper.write(addr, data);
   }
@@ -51,7 +54,7 @@ export class CPUBus implements Bus {
     if (addr === 0x4014) return 0x00;
     if (addr === 0x4016) return this.player1.read();
     if (addr === 0x4017) return this.player2.read();
-    if (addr  <  0x4018) return 0x00;//this.apu.read(addr);
+    if (addr  <  0x4018) return this.apu.cpuRead(addr);
     if (addr  <  0x4020) return 0x00;
     return this.rom.mapper.read(addr);
   }

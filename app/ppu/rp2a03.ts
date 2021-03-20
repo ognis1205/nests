@@ -50,37 +50,58 @@ export class RP2A03 implements PPU {
 
   public interrupt: Interrupt;
 
-  public pixels: Uint8Array = new Uint8Array(256 * 240);
+  public pixels: Uint8Array;
 
-  public oam1: Uint8Array = new Uint8Array(256);
+  public oam1: Uint8Array;
 
-  private controller: Controller = new RP2A03Controller();
+  private controller: Controller;
 
-  private mask: Mask = new RP2A03Mask();
+  private mask: Mask;
 
-  private status: Status = new RP2A03Status();
+  private status: Status;
 
-  private register: Loopy = { vramaddr: 0x0000, tramaddr: 0x0000, fineX: 0x00, toggle: false };
+  private register: Loopy;
 
-  private shifter: Shifter = {} as any;
+  private shifter: Shifter;
 
-  private latch: Latch = {} as any;
+  private latch: Latch;
 
-  private nmiDelay = 0;
+  private nmiDelay: number;
 
-  private frame = 0;
+  private frame: number;
 
-  private scanLine = 240;
+  private scanLine: number;
 
-  private cycle = 340;
+  private cycle: number;
 
-  private oamAddr = 0;
+  private oamAddr: uint16;
 
-  private oam2: Sprite[] = Array(8).fill(0).map(() => Object.create(null));
+  private oam2: Sprite[];
 
-  private spritePixels: number[] = new Array(256);
+  private spritePixels: number[];
 
-  constructor(private readonly onFrame: (frame: Uint8Array) => void) {}
+  constructor(private readonly onFrame: (frame: Uint8Array) => void) {
+    this.pixels     = new Uint8Array(256 * 240);
+    this.oam1       = new Uint8Array(256);
+    this.controller = new RP2A03Controller();
+    this.mask       = new RP2A03Mask();
+    this.status     = new RP2A03Status();
+    this.register   = {
+      vramaddr: 0x0000,
+      tramaddr: 0x0000,
+      fineX: 0x00,
+      toggle: false
+    };
+    this.shifter      = {} as any;
+    this.latch        = {} as any;
+    this.nmiDelay     = 0;
+    this.frame        = 0;
+    this.scanLine     = 240;
+    this.cycle        = 340;
+    this.oamAddr      = 0x0000;
+    this.oam2         = Array(8).fill(0).map(() => Object.create(null));
+    this.spritePixels = new Array(256);
+  }
 
   public tick(): void {
     if (this.scanLine === 261
