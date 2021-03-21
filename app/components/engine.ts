@@ -44,12 +44,12 @@ export class Engine {
     this.height     = options.height;
     this.visCtx     = canvas.getContext('2d');
     if (typeof AudioContext !== 'undefined') {
-      this.audCtx     = new AudioContext({ sampleRate: options.sampleRate });
-      this.source     = this.audCtx.createBufferSource();
-      this.node       = this.audCtx.createScriptProcessor(this.bufferSize, 0, 1);
-      this.buffer     = [];
+      this.audCtx = new AudioContext({ sampleRate: options.sampleRate });
+      this.source = this.audCtx.createBufferSource();
+      this.node   = this.audCtx.createScriptProcessor(this.bufferSize, 0, 1);
     }
-    this.nes        = new NES(ines, {
+    this.buffer = [];
+    this.nes    = new NES(ines, {
       sampleRate: this.sampleRate,
       onSample:   volume => this.onSample(volume),
       onFrame:    frame  => this.onFrame(frame),
