@@ -6,18 +6,68 @@
  */
 import React  from 'react';
 import styles from '../../styles/NES.module.css'
-import { useRef          } from 'react';
-import { NES as Emulator } from '../../app/emulator/nes';
-import { Button          } from '../../app/api/controller';
-import { Screen          } from './screen';
-import { Logo            } from './logo';
-import { Actions         } from './actions';
-import { Pills           } from './pills';
+import { useRef                                       } from 'react';
+//import { AudioContext, IAudioContext, IAudioBufferSourceNode } from 'standardized-audio-context';
+import { NES as Emulator                              } from '../../app/emulator/nes';
+import { Button                                       } from '../../app/api/controller';
+import { Screen                                       } from './screen';
+import { Logo                                         } from './logo';
+import { Actions                                      } from './actions';
+import { Pills                                        } from './pills';
 
 type Props = {
   width:  number;
   height: number;
 };
+
+class Audio {
+  public nes: Emulator;
+
+  private ctx = new AudioContext({ sampleRate: 24000 });
+
+  private source = this.ctx.createBufferSource();
+
+  private scriptNode = this.ctx.createScriptProcessor(256, 0, 1);
+
+  private buffer = [];
+
+//  public constructor(sampleRate: number = 24000, bufferSize: number = 256) {
+//    this.ctx    = new AudioContext({ sampleRate: sampleRate });
+//    this.source = this.ctx.createBufferSource();
+//    this.buffer = [];
+//  }
+
+  public start() {
+    this.scriptNode.onaudioprocess = e => this.process(e);
+    this.source.connect(this.scriptNode);
+    this.scriptNode.connect(this.ctx.destination);
+    this.source.start();
+    setInterval(() => {
+      this.waitSample();
+    }, 1);
+  }
+
+  public get sampleRate(): number {
+    return this.ctx.sampleRate;
+  }
+
+  public onSample(volume: number): void {
+    this.buffer.push(volume);
+  }
+
+  private process(e: AudioProcessingEvent) {
+    const outputData = e.outputBuffer.getChannelData(0);
+    for (let sample = 0; sample < outputData.length; sample++) {
+      outputData[sample] =  this.buffer.shift();
+    }
+  }
+
+  private waitSample(): void {
+    while (this.buffer.length < 256 * 4) {
+      this.nes.tick();
+    }
+  }
+}
 
 export const NES: React.FC<Props> = (props: Props) => {
   type ScreenHandle  = React.ElementRef<typeof Screen>;
@@ -33,6 +83,8 @@ export const NES: React.FC<Props> = (props: Props) => {
   let pills   = useRef<PillsHandle>();
 
   let nes: Emulator;
+
+  let audio: Audio;
 
   React.useEffect(() => {
     document.addEventListener('keyup', (e: KeyboardEvent) => {
@@ -177,13 +229,15 @@ export const NES: React.FC<Props> = (props: Props) => {
 
   const handleChangeFile = (file: File) => {
     let reader = new FileReader();
+    audio = new Audio();
     let onLoad = (f: File) => (e: any) => {
       nes = new Emulator(new Uint8Array(e.target.result), {
-        sampleRate: undefined,
-        onSample:   volume => {},
+        sampleRate: audio.sampleRate,
+        onSample:   volume => audio.onSample(volume),
         onFrame:    frame  => onFrame(frame),
         sramLoad:   undefined
       });
+      audio.nes = nes;
       start();
     }
     reader.onload = onLoad(file);
@@ -191,10 +245,11 @@ export const NES: React.FC<Props> = (props: Props) => {
   }
 
   const start = () => {
-    requestAnimationFrame(function render(timestamp) {
-      nes.frame();
-      requestAnimationFrame(render);
-    });
+    audio.start();
+//    requestAnimationFrame(function render(timestamp) {
+//      nes.frame();
+//      requestAnimationFrame(render);
+//    });
   }
 
   return (
