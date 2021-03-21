@@ -5,7 +5,7 @@
   "homepage": "http://ognis1205.github.io/nests",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "env NODE_ENV='production' next build",
     "start": "next start",
     "export": "next export",
     "test": "jest"
