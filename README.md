@@ -75,8 +75,9 @@ The following is a checklist of features and their progress:
     - [ ] TxROM/MMC3 (Mapper 4)
     - [ ] ExROM/MMC5 (Mapper 5)
 - [ ] Misc
+  - [ ] GitHub page
   - [ ] Unit/Integration tests
   - [ ] Refactor Source Codes
-  - [ ] Error Handling
+  - [X] Error Handling
   - [ ] Documentation
   - [ ] Make Things Responsive

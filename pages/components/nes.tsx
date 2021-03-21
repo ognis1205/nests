@@ -7,7 +7,6 @@
 import React  from 'react';
 import styles from '../../styles/NES.module.css'
 import { useRef          } from 'react';
-import { NES as Emulator } from '../../app/emulator/nes';
 import { Button          } from '../../app/api/controller';
 import { Actions         } from './actions';
 import { Engine          } from './engine';
@@ -161,16 +160,18 @@ export const NES: React.FC<Props> = (props: Props) => {
   });
 
   const handleChangeFile = (file: File) => {
-    engine     = new Engine(screen.current.canvas);
+    if (engine && engine.intervalID) clearInterval(engine.intervalID);
     let reader = new FileReader();
     let onLoad = (f: File) => (e: any) => {
-      engine.nes = new Emulator(new Uint8Array(e.target.result), {
-        sampleRate: engine.sampleRate,
-        onSample:   volume => engine.onSample(volume),
-        onFrame:    frame  => engine.onFrame(frame),
-        sramLoad:   undefined
-      });
-      engine.start();
+      try {
+        engine = new Engine(screen.current.canvas, new Uint8Array(e.target.result));
+        engine.start();
+      } catch (e) {
+        let ctx = screen.current.canvas.getContext('2d');
+        ctx.textAlign = 'center';
+        ctx.fillText(e, 128, 120);
+        if (engine && engine.intervalID) clearInterval(engine.intervalID);
+      }
     }
     reader.onload = onLoad(file);
     reader.readAsArrayBuffer(file);

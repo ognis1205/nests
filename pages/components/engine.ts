@@ -25,6 +25,8 @@ export class Engine {
 
   public height: number;
 
+  public intervalID: NodeJS.Timer | null;
+
   private audCtx: AudioContext;
 
   private visCtx: CanvasRenderingContext2D;
@@ -35,7 +37,7 @@ export class Engine {
 
   private buffer: number[];
 
-  public constructor(canvas: HTMLCanvasElement, options?: Options) {
+  public constructor(canvas: HTMLCanvasElement, ines: Uint8Array, options?: Options) {
     options = this.parse(options);
     this.bufferSize = options.bufferSize;
     this.width      = options.width;
@@ -45,6 +47,12 @@ export class Engine {
     this.source     = this.audCtx.createBufferSource();
     this.node       = this.audCtx.createScriptProcessor(this.bufferSize, 0, 1);
     this.buffer     = [];
+    this.nes        = new NES(ines, {
+      sampleRate: this.sampleRate,
+      onSample:   volume => this.onSample(volume),
+      onFrame:    frame  => this.onFrame(frame),
+      sramLoad:   undefined
+    });
   }
 
   public start() {
@@ -52,7 +60,7 @@ export class Engine {
     this.source.connect(this.node);
     this.node.connect(this.audCtx.destination);
     this.source.start();
-    setInterval(() => {
+    this.intervalID = setInterval(() => {
       this.waitSample();
     }, 1);
   }
@@ -96,6 +104,13 @@ export class Engine {
   }
 
   private waitSample(): void {
-    while (this.buffer.length < this.bufferSize * 4) this.nes.tick();
+    try {
+      while (this.buffer.length < this.bufferSize * 4) this.nes.tick();
+    } catch (e) {
+      this.visCtx.clearRect(0, 0, this.width, this.height);
+      this.visCtx.textAlign = 'center';
+      this.visCtx.fillText(e, 128, 120);
+      if (this.intervalID) clearInterval(this.intervalID);
+    }
   }
 }
