@@ -7,7 +7,7 @@
 import React  from 'react';
 import styles from '../../styles/NES.module.css'
 import { useRef          } from 'react';
-import { Button          } from '../../app/api/controller';
+import { Button          } from '../api/controller';
 import { Actions         } from './actions';
 import { Engine          } from './engine';
 import { Logo            } from './logo';

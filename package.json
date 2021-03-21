@@ -1,12 +1,15 @@
 {
-  "name": "nes-ts",
-  "version": "0.1.0",
+  "name": "nests",
+  "version": "1.0.0",
   "private": true,
+  "homepage": "http://ognis1205.github.io/nests",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest"
+    "test": "jest",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.3",
@@ -20,6 +23,7 @@
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.28",
     "@types/react": "^17.0.2",
+    "gh-pages": "^3.1.0",
     "jest": "^26.6.3",
     "ts-jest": "^26.5.1",
     "typescript": "^4.1.5"

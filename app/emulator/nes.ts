@@ -132,7 +132,7 @@ export class NES implements Emulator {
   private palette(pixels: Uint8Array): Uint32Array {
     const ret = new Uint32Array(pixels.length);
     let ptr = 0;
-    for (const p of pixels) ret[ptr++] = colour(p);
+    pixels.forEach(p => { ret[ptr++] = colour(p); });
     return ret;
   }
 
