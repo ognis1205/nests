@@ -43,12 +43,12 @@ export class Engine {
     this.width      = options.width;
     this.height     = options.height;
     this.visCtx     = canvas.getContext('2d');
-//    if (AudioContext) {
+    if (AudioContext) {
       this.audCtx     = new AudioContext({ sampleRate: options.sampleRate });
       this.source     = this.audCtx.createBufferSource();
       this.node       = this.audCtx.createScriptProcessor(this.bufferSize, 0, 1);
       this.buffer     = [];
-//    }
+    }
     this.nes        = new NES(ines, {
       sampleRate: this.sampleRate,
       onSample:   volume => this.onSample(volume),
@@ -58,20 +58,20 @@ export class Engine {
   }
 
   public start() {
-//    if (AudioContext) {
+    if (AudioContext) {
       this.node.onaudioprocess = e => this.process(e);
       this.source.connect(this.node);
       this.node.connect(this.audCtx.destination);
       this.source.start();
-//    }
+    }
     this.intervalID = setInterval(() => {
       this.waitSample();
     }, 1);
   }
 
   public get sampleRate(): number {
-//    return AudioContext ? this.audCtx.sampleRate : undefined;
-    return this.audCtx.sampleRate;
+    return AudioContext ? this.audCtx.sampleRate : undefined;
+//    return this.audCtx.sampleRate;
   }
 
   public onSample(volume: number): void {
