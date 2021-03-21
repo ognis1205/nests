@@ -9,6 +9,12 @@ import styles from '../../styles/Actions.module.css'
 import { useRef } from 'react';
 
 type ActionButtons = {
+  up:    HTMLDivElement;
+  right: HTMLDivElement;
+  down:  HTMLDivElement;
+  left:  HTMLDivElement;
+  a:     HTMLDivElement;
+  b:     HTMLDivElement;            
   keydownUp:    () => void;
   keyupUp:      () => void;
   keydownRight: () => void;
@@ -37,6 +43,24 @@ export const Actions = React.forwardRef<ActionButtons, Object>((props, ref) => {
   const b     = useRef<HTMLDivElement>();
 
   React.useImperativeHandle(ref, () => ({
+    get up(): HTMLDivElement {
+      return up.current;
+    },
+    get right() {
+      return right.current;
+    },
+    get down() {
+      return down.current;
+    },
+    get left() {
+      return down.current;
+    },
+    get a() {
+      return a.current;
+    },
+    get b() {
+      return a.current;
+    },
     keydownUp(): void {
       up.current.classList.add(styles['active']);
     },

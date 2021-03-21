@@ -71,7 +71,6 @@ export class Engine {
 
   public get sampleRate(): number {
     return typeof AudioContext !== 'undefined' ? this.audCtx.sampleRate : undefined;
-//    return this.audCtx.sampleRate;
   }
 
   public onSample(volume: number): void {
