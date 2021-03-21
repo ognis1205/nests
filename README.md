@@ -6,14 +6,9 @@
 ![Screenshot of Super Mario Brothers](https://imgur.com/rlbFwm0.gif)
 ![Screenshot of Legend of Zelda](https://imgur.com/pp0AZE7.gif)
 
-### Notice
-
-This project is STILL EXPERIMENTAL and WIP.
-
 ### Summary
 
-TypeScript/React.js NES emulator implementation for My Own Learning Porpose. The implementation is NOT fully faithfull to the original NES hardware
-and some codes are still messy.
+You can play online demo [HERE](https://ognis1205.github.io/nests/). TypeScript/React.js NES emulator implementation for My Own Learning Porpose. The implementation is NOT fully faithfull to the original NES hardware and some codes are still messy.
 
 ### Getting Started
 
@@ -56,7 +51,7 @@ The following is a checklist of features and their progress:
   - [x] NTSC TV Artifact Effects
   - [x] Emphasize RGB/Grayscale
 - [ ] APU
-  - [ ] AudioWroklet
+  - [ ] AudioWorklet
   - [x] Pulse Channels
   - [x] Triangle Channels
   - [x] Noise Channels
@@ -75,7 +70,8 @@ The following is a checklist of features and their progress:
     - [ ] TxROM/MMC3 (Mapper 4)
     - [ ] ExROM/MMC5 (Mapper 5)
 - [ ] Misc
-  - [ ] GitHub page
+  - [ ] Reimplement UI/UX for smartphone users
+  - [X] GitHub page
   - [ ] Unit/Integration tests
   - [ ] Refactor Source Codes
   - [X] Error Handling
