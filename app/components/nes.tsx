@@ -158,6 +158,7 @@ export const NES: React.FC<Props> = (props: Props) => {
       e.preventDefault();
     });
     actions.current.up.addEventListener('keydown', (e: KeyboardEvent) => {
+      console.log('test');
       actions.current.keydownUp();
       if (engine && engine.nes) {
         engine.nes.player1.update(Button.UP, true);
