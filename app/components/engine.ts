@@ -111,8 +111,8 @@ export class Engine {
   private waitSample(): void {
     try {
       while (this.buffer.length < this.bufferSize * 4) this.nes.tick();
+      console.log('interval');
     } catch (e) {
-      console.log(e);
       this.visCtx.clearRect(0, 0, this.width, this.height);
       this.visCtx.textAlign = 'center';
       this.visCtx.fillText(e, 128, 120);

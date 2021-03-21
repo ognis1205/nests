@@ -161,15 +161,12 @@ export const NES: React.FC<Props> = (props: Props) => {
 
   const handleChangeFile = (file: File) => {
     if (engine && engine.intervalID) clearInterval(engine.intervalID);
-    console.log("test");
     let reader = new FileReader();
     let onLoad = (f: File) => (e: any) => {
       try {
-        console.log("loaded");
         engine = new Engine(screen.current.canvas, new Uint8Array(e.target.result));
         engine.start();
       } catch (e) {
-        console.log(e);
         let ctx = screen.current.canvas.getContext('2d');
         ctx.clearRect(0, 0, engine.width, engine.height);
         ctx.textAlign = 'center';
