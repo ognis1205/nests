@@ -56,10 +56,11 @@ The following is a checklist of features and their progress:
   - [x] NTSC TV Artifact Effects
   - [x] Emphasize RGB/Grayscale
 - [ ] APU
-  - [ ] Pulse Channels
-  - [ ] Triangle Channels
-  - [ ] Noise Channels
-  - [ ] Delta Mulation Channel
+  - [ ] AudioWroklet
+  - [x] Pulse Channels
+  - [x] Triangle Channels
+  - [x] Noise Channels
+  - [x] Delta Mulation Channel
 - [x] Inputs
 - [x] Memory
 - [x] Cartridge
