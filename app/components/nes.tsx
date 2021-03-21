@@ -157,6 +157,13 @@ export const NES: React.FC<Props> = (props: Props) => {
       }
       e.preventDefault();
     });
+    actions.current.up.addEventListener('touchstart', (e: KeyboardEvent) => {
+      actions.current.keydownUp();
+      if (engine && engine.nes) {
+        engine.nes.player1.update(Button.UP, true);
+        engine.nes.player2.update(Button.UP, true);
+      }
+    });
     actions.current.up.addEventListener('touchmove', (e: KeyboardEvent) => {
       actions.current.keydownUp();
       if (engine && engine.nes) {
@@ -169,6 +176,13 @@ export const NES: React.FC<Props> = (props: Props) => {
       if (engine && engine.nes) {
         engine.nes.player1.update(Button.UP, false);
         engine.nes.player2.update(Button.UP, false);
+      }
+    });
+    actions.current.right.addEventListener('touchstart', (e: KeyboardEvent) => {
+      actions.current.keydownRight();
+      if (engine && engine.nes) {
+        engine.nes.player1.update(Button.RIGHT, true);
+        engine.nes.player2.update(Button.RIGHT, true);
       }
     });
     actions.current.right.addEventListener('touchmove', (e: KeyboardEvent) => {
@@ -185,6 +199,13 @@ export const NES: React.FC<Props> = (props: Props) => {
         engine.nes.player2.update(Button.RIGHT, false);
       }
     });
+    actions.current.down.addEventListener('touchstart', (e: KeyboardEvent) => {
+      actions.current.keydownDown();
+      if (engine && engine.nes) {
+        engine.nes.player1.update(Button.DOWN, true);
+        engine.nes.player2.update(Button.DOWN, true);
+      }
+    });
     actions.current.down.addEventListener('touchmove', (e: KeyboardEvent) => {
       actions.current.keydownDown();
       if (engine && engine.nes) {
@@ -197,6 +218,13 @@ export const NES: React.FC<Props> = (props: Props) => {
       if (engine && engine.nes) {
         engine.nes.player1.update(Button.DOWN, false);
         engine.nes.player2.update(Button.DOWN, false);
+      }
+    });
+    actions.current.left.addEventListener('touchstart', (e: KeyboardEvent) => {
+      actions.current.keydownLeft();
+      if (engine && engine.nes) {
+        engine.nes.player1.update(Button.LEFT, true);
+        engine.nes.player2.update(Button.LEFT, true);
       }
     });
     actions.current.left.addEventListener('touchmove', (e: KeyboardEvent) => {
@@ -213,6 +241,13 @@ export const NES: React.FC<Props> = (props: Props) => {
         engine.nes.player2.update(Button.LEFT, false);
       }
     });
+    actions.current.a.addEventListener('touchstart', (e: KeyboardEvent) => {
+      actions.current.keydownA();
+      if (engine && engine.nes) {
+        engine.nes.player1.update(Button.A, true);
+        engine.nes.player2.update(Button.A, true);
+      }
+    });
     actions.current.a.addEventListener('touchmove', (e: KeyboardEvent) => {
       actions.current.keydownA();
       if (engine && engine.nes) {
@@ -225,6 +260,13 @@ export const NES: React.FC<Props> = (props: Props) => {
       if (engine && engine.nes) {
         engine.nes.player1.update(Button.A, false);
         engine.nes.player2.update(Button.A, false);
+      }
+    });
+    actions.current.b.addEventListener('touchstart', (e: KeyboardEvent) => {
+      actions.current.keydownB();
+      if (engine && engine.nes) {
+        engine.nes.player1.update(Button.B, true);
+        engine.nes.player2.update(Button.B, true);
       }
     });
     actions.current.b.addEventListener('touchmove', (e: KeyboardEvent) => {
