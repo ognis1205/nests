@@ -168,6 +168,7 @@ export const NES: React.FC<Props> = (props: Props) => {
         engine.start();
       } catch (e) {
         let ctx = screen.current.canvas.getContext('2d');
+        ctx.clearRect(0, 0, engine.width, engine.height);
         ctx.textAlign = 'center';
         ctx.fillText(e, 128, 120);
         if (engine && engine.intervalID) clearInterval(engine.intervalID);
