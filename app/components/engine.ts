@@ -110,8 +110,8 @@ export class Engine {
 
   private waitSample(): void {
     try {
-      while (this.buffer.length < this.bufferSize * 4) this.nes.tick();
-      console.log('interval');
+      if (typeof AudioContext !== 'undefined') while (this.buffer.length < this.bufferSize * 4) this.nes.tick();
+      else this.nes.frame();
     } catch (e) {
       this.visCtx.clearRect(0, 0, this.width, this.height);
       this.visCtx.textAlign = 'center';
