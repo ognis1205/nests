@@ -157,85 +157,84 @@ export const NES: React.FC<Props> = (props: Props) => {
       }
       e.preventDefault();
     });
-    actions.current.up.addEventListener('keydown', (e: KeyboardEvent) => {
-      console.log('test');
+    actions.current.up.addEventListener('touchmove', (e: KeyboardEvent) => {
       actions.current.keydownUp();
       if (engine && engine.nes) {
         engine.nes.player1.update(Button.UP, true);
         engine.nes.player2.update(Button.UP, true);
       }
     });
-    actions.current.up.addEventListener('keyup', (e: KeyboardEvent) => {
+    actions.current.up.addEventListener('touchend', (e: KeyboardEvent) => {
       actions.current.keyupUp();
       if (engine && engine.nes) {
         engine.nes.player1.update(Button.UP, false);
         engine.nes.player2.update(Button.UP, false);
       }
     });
-    actions.current.right.addEventListener('keydown', (e: KeyboardEvent) => {
+    actions.current.right.addEventListener('touchmove', (e: KeyboardEvent) => {
       actions.current.keydownRight();
       if (engine && engine.nes) {
         engine.nes.player1.update(Button.RIGHT, true);
         engine.nes.player2.update(Button.RIGHT, true);
       }
     });
-    actions.current.right.addEventListener('keyup', (e: KeyboardEvent) => {
+    actions.current.right.addEventListener('touchend', (e: KeyboardEvent) => {
       actions.current.keyupRight();
       if (engine && engine.nes) {
         engine.nes.player1.update(Button.RIGHT, false);
         engine.nes.player2.update(Button.RIGHT, false);
       }
     });
-    actions.current.down.addEventListener('keydown', (e: KeyboardEvent) => {
+    actions.current.down.addEventListener('touchmove', (e: KeyboardEvent) => {
       actions.current.keydownDown();
       if (engine && engine.nes) {
         engine.nes.player1.update(Button.DOWN, true);
         engine.nes.player2.update(Button.DOWN, true);
       }
     });
-    actions.current.down.addEventListener('keyup', (e: KeyboardEvent) => {
+    actions.current.down.addEventListener('touchend', (e: KeyboardEvent) => {
       actions.current.keyupDown();
       if (engine && engine.nes) {
         engine.nes.player1.update(Button.DOWN, false);
         engine.nes.player2.update(Button.DOWN, false);
       }
     });
-    actions.current.left.addEventListener('keydown', (e: KeyboardEvent) => {
+    actions.current.left.addEventListener('touchmove', (e: KeyboardEvent) => {
       actions.current.keydownLeft();
       if (engine && engine.nes) {
         engine.nes.player1.update(Button.LEFT, true);
         engine.nes.player2.update(Button.LEFT, true);
       }
     });
-    actions.current.left.addEventListener('keyup', (e: KeyboardEvent) => {
+    actions.current.left.addEventListener('touchend', (e: KeyboardEvent) => {
       actions.current.keyupLeft();
       if (engine && engine.nes) {
         engine.nes.player1.update(Button.LEFT, false);
         engine.nes.player2.update(Button.LEFT, false);
       }
     });
-    actions.current.a.addEventListener('keydown', (e: KeyboardEvent) => {
+    actions.current.a.addEventListener('touchmove', (e: KeyboardEvent) => {
       actions.current.keydownA();
       if (engine && engine.nes) {
         engine.nes.player1.update(Button.A, true);
         engine.nes.player2.update(Button.A, true);
       }
     });
-    actions.current.a.addEventListener('keyup', (e: KeyboardEvent) => {
+    actions.current.a.addEventListener('touchend', (e: KeyboardEvent) => {
       actions.current.keyupA();
       if (engine && engine.nes) {
         engine.nes.player1.update(Button.A, false);
         engine.nes.player2.update(Button.A, false);
       }
     });
-    actions.current.b.addEventListener('keydown', (e: KeyboardEvent) => {
+    actions.current.b.addEventListener('touchmove', (e: KeyboardEvent) => {
       actions.current.keydownB();
       if (engine && engine.nes) {
         engine.nes.player1.update(Button.B, true);
         engine.nes.player2.update(Button.B, true);
       }
     });
-    actions.current.b.addEventListener('keyup', (e: KeyboardEvent) => {
+    actions.current.b.addEventListener('touchend', (e: KeyboardEvent) => {
       actions.current.keyupB();
       if (engine && engine.nes) {
         engine.nes.player1.update(Button.B, false);
