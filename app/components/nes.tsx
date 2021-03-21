@@ -169,6 +169,7 @@ export const NES: React.FC<Props> = (props: Props) => {
         engine = new Engine(screen.current.canvas, new Uint8Array(e.target.result));
         engine.start();
       } catch (e) {
+        console.log(e);
         let ctx = screen.current.canvas.getContext('2d');
         ctx.clearRect(0, 0, engine.width, engine.height);
         ctx.textAlign = 'center';
