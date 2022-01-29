@@ -4,10 +4,10 @@
  * Written by and Copyright (C) 2021 Shingo OKAWA shingo.okawa.g.h.c@gmail.com
  * Trademarks are owned by their respect owners.
  */
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import   red              from '@material-ui/core/colors/red';
 
-export const theme = createMuiTheme({
+export const theme = createTheme({
   palette: {
     primary: {
       main:         '#7E2E1F',

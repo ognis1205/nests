@@ -1,17 +1,11 @@
 {
-  "plugins": [
-    "prettier"
-  ],
   "extends": [
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
-    "plugin:react/recommended"
+    "next",
   ],
   "rules": {
     "no-console": 0,
-    "prettier/prettier": "error",
-    "@typescript-eslint/no-var-requires": false,
-    "@typescript-eslint/indent": "ingore",
+    "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/indent": 0,
     "react/jsx-filename-extension": [1, {
       "extensions": [".ts", ".tsx", ".js", ".jsx"]
     }]
