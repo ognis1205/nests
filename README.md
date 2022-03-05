@@ -12,15 +12,27 @@ You can play online demo [HERE](https://ognis1205.github.io/nests/). TypeScript/
 
 ### Getting Started
 
-First, run the development server:
+ 1. Run the following command in the project root directory to install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
+ $ npm install && npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ 2. After the installation, you can start the server by the following command in the project root directory:
+ 
+ ```bash
+ $ npm start
+```
+
+### Running Development Server
+
+ 1. If you want to run the development server, simply run the following command in the project root directory:
+
+```bash
+ $ npm run dev
+```
+
+ 2. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ### Key-Mappings
 
