@@ -2,9 +2,9 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-![Screenshot of Donkey Kong](./img/donkey.gif|width=100px)
-![Screenshot of Super Mario Brothers](./img/mario.gif|width=100px)
-![Screenshot of Legend of Zelda](./img/zelda.gif|width=100px)
+<img src="./img/donkey.gif" width="100px">
+<img src="./img/mario.gif" width="100px">
+<img src="./img/zelda.gif" width="100px">
 
 ### Summary
 
