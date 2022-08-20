@@ -3,9 +3,9 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 <p float="left" align="center">
-	<img src="./img/donkey.gif" width="150px">
-	<img src="./img/mario.gif" width="150px">
-	<img src="./img/zelda.gif" width="150px">
+  <img src="./img/donkey.gif" width="150px" style="margin:15px">
+  <img src="./img/mario.gif" width="150px" style="margin:15px">
+  <img src="./img/zelda.gif" width="150px" style="margin:15px">
 </p>
 
 ### Summary
